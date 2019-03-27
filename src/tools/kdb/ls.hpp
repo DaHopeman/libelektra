@@ -52,6 +52,7 @@ private:
 	void printResults (kdb::KeySet const & part, const int rootDepth, Cmdline const & cl);
 	int getDepth (kdb::Key const & key);
 	bool shallShowNextLevel (const std::string argument);
+	bool isValidKey (kdb::Key const & key);
 };
 
 #endif

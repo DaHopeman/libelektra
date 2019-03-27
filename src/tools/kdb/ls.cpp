@@ -85,7 +85,7 @@ void LsCommand::printResults (KeySet const & part, const int rootDepth, Cmdline 
 	for (const auto & it : part)
 	{
 		const int depth = getDepth (it);
-		if ((depth >= relativeMinDepth && depth < relativeMaxDepth) || cl.debug)
+		if ((depth >= relativeMinDepth && depth < relativeMaxDepth && isValidKey(it)) || cl.debug)
 		{
 			cout << it;
 			if (cl.debug)
@@ -108,6 +108,11 @@ void LsCommand::printResults (KeySet const & part, const int rootDepth, Cmdline 
 int LsCommand::getDepth (Key const & key)
 {
 	return std::distance (key.begin (), key.end ());
+}
+
+bool LsCommand::isValidKey (Key const & key)
+{
+	return (key.getName().at(0) != '/');
 }
 
 bool LsCommand::shallShowNextLevel (const string argument)
